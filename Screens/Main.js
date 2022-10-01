@@ -199,7 +199,7 @@ export default class Main extends Component {
 					/>
 					{this.state.faces.map((face) => {
 						var f = filters[this.state.current_filter];
-						console.log(this.state.current_filter)
+						console.log(this.state.current_filter);
 						return (
 							<Filter
 								face={face}

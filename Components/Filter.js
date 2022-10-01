@@ -1,15 +1,21 @@
 import React from "react";
 import { Image, View, Text } from "react-native";
-var Filter9= (props) => {
+var Filter = (props) => {
 	var faceHeight = props["face"]["bounds"]["size"]["height"];
 	var faceWidth = props["face"]["bounds"]["size"]["width"];
 	var leftEyePosition = props["face"]["LEFT_EYE"];
-    var rightEyePosition = props["face"]["RIGHT_EYE"];
-    console.log( props["face"]["bounds"])
+	var rightEyePosition = props["face"]["RIGHT_EYE"];
+	console.log(props["face"]["bounds"]);
 	var noseBasePosition = props["face"]["NOSE_BASE"];
-    
-    const filterWidth = faceWidth * 3.5;
-    const filterHeight = faceHeight * 0.7;
+	var left = props["left"] + 0.1;
+	var right = props["right"];
+	var top = props["top"];
+	var img = props["img"];
+	var width = props["width"];
+	var height = props["height"];
+
+	const filterWidth = faceWidth * width;
+	const filterHeight = faceHeight * height;
 	const transformAngle = (
 		angleRad = Math.atan(
 			(rightEyePosition.y - leftEyePosition.y) /
@@ -17,16 +23,16 @@ var Filter9= (props) => {
 		)
 	) => (angleRad * 100) / Math.PI;
 	return (
-        <View
-        style={{
-          position: "absolute",
-          left: leftEyePosition.x - filterWidth * 0.576,
-          right: rightEyePosition.x - filterWidth * 0.1,
-          top: noseBasePosition.y - filterHeight * 1.25
-        }}
-      >
+		<View
+			style={{
+				position: "absolute",
+				left: leftEyePosition.x - filterWidth * left,
+				right: rightEyePosition.x - filterWidth * right,
+				top: noseBasePosition.y - filterHeight * top,
+			}}
+		>
 			<Image
-				source={require("../assets/hat-pic2.png")}
+				source={img}
 				style={{
 					width: filterWidth,
 					height: filterHeight,
@@ -37,4 +43,4 @@ var Filter9= (props) => {
 		</View>
 	);
 };
-export default Filter9;
+export default Filter;
